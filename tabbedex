@@ -521,6 +521,7 @@ sub tab_key_press {
    if ($tab->{is_inputting_name}) {
       if ($keysym == 0xff0d || $keysym == 0xff8d) { # enter
          $tab->{name} = $tab->{new_name};
+         $urxvt::TERM->cmd_parse("\e]0;".$tab->{name}."\007");
          $tab->{is_inputting_name} = 0;
          $self->update_autohide (1);
       } elsif ($keysym == 0xff1b) { # escape
